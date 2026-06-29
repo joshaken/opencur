@@ -7,19 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B5B5060D2FF1593C000F78B1 /* opencurApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B5060C2FF1593C000F78B1 /* opencurApp.swift */; };
-		B5B5060F2FF1593C000F78B1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B5060E2FF1593C000F78B1 /* ContentView.swift */; };
-		B5B506112FF1593D000F78B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5B506102FF1593D000F78B1 /* Assets.xcassets */; };
-		B5B506142FF1593D000F78B1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5B506132FF1593D000F78B1 /* Preview Assets.xcassets */; };
+		B5B5063E2FF169F9000F78B1 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B5063C2FF169F9000F78B1 /* App.swift */; };
+		B5B506432FF16A05000F78B1 /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B5063F2FF16A05000F78B1 /* ConfigurationManager.swift */; };
+		B5B506442FF16A05000F78B1 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B506402FF16A05000F78B1 /* Errors.swift */; };
+		B5B506452FF16A05000F78B1 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B506412FF16A05000F78B1 /* Logger.swift */; };
+		B5B5064A2FF16A0E000F78B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5B506462FF16A0E000F78B1 /* Assets.xcassets */; };
+		B5B5064B2FF16A0E000F78B1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5B506472FF16A0E000F78B1 /* Info.plist */; };
+		B5B506542FF16A1C000F78B1 /* GhosttyLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B5064C2FF16A1C000F78B1 /* GhosttyLauncher.swift */; };
+		B5B506552FF16A1C000F78B1 /* ITerm2Launcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B5064D2FF16A1C000F78B1 /* ITerm2Launcher.swift */; };
+		B5B506562FF16A1C000F78B1 /* LauncherFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B5064E2FF16A1C000F78B1 /* LauncherFactory.swift */; };
+		B5B506572FF16A1C000F78B1 /* TerminalAppLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B5064F2FF16A1C000F78B1 /* TerminalAppLauncher.swift */; };
+		B5B506582FF16A1C000F78B1 /* TerminalLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B506502FF16A1C000F78B1 /* TerminalLauncher.swift */; };
+		B5B506592FF16A1C000F78B1 /* FinderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B506522FF16A1C000F78B1 /* FinderService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B5B506092FF1593C000F78B1 /* opencur.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = opencur.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B5B5060C2FF1593C000F78B1 /* opencurApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = opencurApp.swift; sourceTree = "<group>"; };
-		B5B5060E2FF1593C000F78B1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		B5B506102FF1593D000F78B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B5B506132FF1593D000F78B1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		B5B506152FF1593D000F78B1 /* opencur.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = opencur.entitlements; sourceTree = "<group>"; };
+		B5B5063C2FF169F9000F78B1 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		B5B5063F2FF16A05000F78B1 /* ConfigurationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationManager.swift; sourceTree = "<group>"; };
+		B5B506402FF16A05000F78B1 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		B5B506412FF16A05000F78B1 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		B5B506462FF16A0E000F78B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B5B506472FF16A0E000F78B1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5B506482FF16A0E000F78B1 /* opencur.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = opencur.entitlements; sourceTree = "<group>"; };
+		B5B5064C2FF16A1C000F78B1 /* GhosttyLauncher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GhosttyLauncher.swift; sourceTree = "<group>"; };
+		B5B5064D2FF16A1C000F78B1 /* ITerm2Launcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITerm2Launcher.swift; sourceTree = "<group>"; };
+		B5B5064E2FF16A1C000F78B1 /* LauncherFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LauncherFactory.swift; sourceTree = "<group>"; };
+		B5B5064F2FF16A1C000F78B1 /* TerminalAppLauncher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TerminalAppLauncher.swift; sourceTree = "<group>"; };
+		B5B506502FF16A1C000F78B1 /* TerminalLauncher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TerminalLauncher.swift; sourceTree = "<group>"; };
+		B5B506522FF16A1C000F78B1 /* FinderService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinderService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,7 +52,10 @@
 		B5B506002FF1593C000F78B1 = {
 			isa = PBXGroup;
 			children = (
-				B5B5060B2FF1593C000F78B1 /* opencur */,
+				B5B506532FF16A1C000F78B1 /* Services */,
+				B5B506422FF16A05000F78B1 /* Core */,
+				B5B506492FF16A0E000F78B1 /* Resources */,
+				B5B5063D2FF169F9000F78B1 /* App */,
 				B5B5060A2FF1593C000F78B1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,24 +68,53 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B5B5060B2FF1593C000F78B1 /* opencur */ = {
+		B5B5063D2FF169F9000F78B1 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				B5B5060C2FF1593C000F78B1 /* opencurApp.swift */,
-				B5B5060E2FF1593C000F78B1 /* ContentView.swift */,
-				B5B506102FF1593D000F78B1 /* Assets.xcassets */,
-				B5B506152FF1593D000F78B1 /* opencur.entitlements */,
-				B5B506122FF1593D000F78B1 /* Preview Content */,
+				B5B5063C2FF169F9000F78B1 /* App.swift */,
 			);
-			path = opencur;
+			path = App;
 			sourceTree = "<group>";
 		};
-		B5B506122FF1593D000F78B1 /* Preview Content */ = {
+		B5B506422FF16A05000F78B1 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				B5B506132FF1593D000F78B1 /* Preview Assets.xcassets */,
+				B5B5063F2FF16A05000F78B1 /* ConfigurationManager.swift */,
+				B5B506402FF16A05000F78B1 /* Errors.swift */,
+				B5B506412FF16A05000F78B1 /* Logger.swift */,
 			);
-			path = "Preview Content";
+			path = Core;
+			sourceTree = SOURCE_ROOT;
+		};
+		B5B506492FF16A0E000F78B1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B5B506462FF16A0E000F78B1 /* Assets.xcassets */,
+				B5B506472FF16A0E000F78B1 /* Info.plist */,
+				B5B506482FF16A0E000F78B1 /* opencur.entitlements */,
+			);
+			path = Resources;
+			sourceTree = SOURCE_ROOT;
+		};
+		B5B506512FF16A1C000F78B1 /* TerminalLauncher */ = {
+			isa = PBXGroup;
+			children = (
+				B5B5064C2FF16A1C000F78B1 /* GhosttyLauncher.swift */,
+				B5B5064D2FF16A1C000F78B1 /* ITerm2Launcher.swift */,
+				B5B5064E2FF16A1C000F78B1 /* LauncherFactory.swift */,
+				B5B5064F2FF16A1C000F78B1 /* TerminalAppLauncher.swift */,
+				B5B506502FF16A1C000F78B1 /* TerminalLauncher.swift */,
+			);
+			path = TerminalLauncher;
+			sourceTree = "<group>";
+		};
+		B5B506532FF16A1C000F78B1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B5B506512FF16A1C000F78B1 /* TerminalLauncher */,
+				B5B506522FF16A1C000F78B1 /* FinderService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,8 +175,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5B506142FF1593D000F78B1 /* Preview Assets.xcassets in Resources */,
-				B5B506112FF1593D000F78B1 /* Assets.xcassets in Resources */,
+				B5B5064B2FF16A0E000F78B1 /* Info.plist in Resources */,
+				B5B5064A2FF16A0E000F78B1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,8 +187,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5B5060F2FF1593C000F78B1 /* ContentView.swift in Sources */,
-				B5B5060D2FF1593C000F78B1 /* opencurApp.swift in Sources */,
+				B5B506552FF16A1C000F78B1 /* ITerm2Launcher.swift in Sources */,
+				B5B506582FF16A1C000F78B1 /* TerminalLauncher.swift in Sources */,
+				B5B506542FF16A1C000F78B1 /* GhosttyLauncher.swift in Sources */,
+				B5B506432FF16A05000F78B1 /* ConfigurationManager.swift in Sources */,
+				B5B506572FF16A1C000F78B1 /* TerminalAppLauncher.swift in Sources */,
+				B5B506442FF16A05000F78B1 /* Errors.swift in Sources */,
+				B5B5063E2FF169F9000F78B1 /* App.swift in Sources */,
+				B5B506592FF16A1C000F78B1 /* FinderService.swift in Sources */,
+				B5B506452FF16A05000F78B1 /* Logger.swift in Sources */,
+				B5B506562FF16A1C000F78B1 /* LauncherFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,11 +326,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = opencur/opencur.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Resources/opencur.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"opencur/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 4T8L4FSXRB;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -297,11 +353,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = opencur/opencur.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Resources/opencur.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"opencur/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 4T8L4FSXRB;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
