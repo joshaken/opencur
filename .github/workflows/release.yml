@@ -1,57 +1,39 @@
 name: Release
 
 on:
-  workflow_dispatch:
   push:
     tags:
-      - "v*"
+      - 'v*'
 
 permissions:
   contents: write
 
 jobs:
-  build:
+  release:
     runs-on: macos-14
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Show Xcode
-        run: xcodebuild -version
-
       - name: Build
         run: |
-          set -euxo pipefail
-
           xcodebuild \
             -project opencur.xcodeproj \
             -scheme opencur \
             -configuration Release \
-            -destination 'platform=macOS' \
             -derivedDataPath build \
-            CODE_SIGNING_ALLOWED=NO \
-            CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGN_STYLE=Manual \
-            CODE_SIGN_IDENTITY="" \
-            DEVELOPMENT_TEAM="" \
             clean build
-
-      - name: Verify App
-        run: |
-          find build -name "*.app"
 
       - name: Zip App
         run: |
-          APP=$(find build -name "*.app" | head -n 1)
+          ditto -c -k --keepParent \
+            build/Build/Products/Release/opencur.app \
+            opencur.zip
 
-          if [ -z "$APP" ]; then
-            echo "No app found"
-            exit 1
-          fi
-
-          ditto -c -k --keepParent "$APP" opencur.zip
-
-      - name: Upload Release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: opencur.zip
+      - name: Create Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${GITHUB_REF_NAME}" \
+            opencur.zip \
+            --generate-notes
