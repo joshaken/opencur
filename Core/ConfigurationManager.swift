@@ -1,9 +1,11 @@
 import Foundation
 
-enum TerminalKind: String, CaseIterable, Sendable {
+enum TerminalKind: String, Sendable {
     case terminal = "com.apple.Terminal"
     case iTerm2 = "com.googlecode.iterm2"
     case ghostty = "com.mitchellh.ghostty"
+
+    var bundleIdentifier: String { rawValue }
 
     var displayName: String {
         switch self {
@@ -13,27 +15,16 @@ enum TerminalKind: String, CaseIterable, Sendable {
         }
     }
 
-    var bundleIdentifier: String { rawValue }
+    func open(directory: URL) async throws {
+        switch self {
+        case .terminal: try await TerminalAppLauncher().open(directory: directory)
+        case .iTerm2: try await ITerm2Launcher().open(directory: directory)
+        case .ghostty: try await GhosttyLauncher().open(directory: directory)
+        }
+    }
 }
 
-final class ConfigurationManager: @unchecked Sendable {
-    private let defaults: UserDefaults
-
-    init(defaults: UserDefaults = .standard) {
-        self.defaults = defaults
-    }
-
-    var preferredTerminal: TerminalKind {
-        get {
-            let raw = defaults.string(forKey: "opencur-terminal-bundle-id")
-            return TerminalKind(rawValue: raw ?? "") ?? .ghostty
-        }
-        set {
-            defaults.set(newValue.rawValue, forKey: "opencur-terminal-bundle-id")
-        }
-    }
-
-    func reset() {
-        defaults.removeObject(forKey: "opencur-terminal-bundle-id")
-    }
+var preferredTerminal: TerminalKind {
+    get { TerminalKind(rawValue: UserDefaults.standard.string(forKey: "opencur-terminal-bundle-id") ?? "") ?? .ghostty }
+    set { UserDefaults.standard.set(newValue.rawValue, forKey: "opencur-terminal-bundle-id") }
 }

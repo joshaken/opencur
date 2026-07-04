@@ -14,9 +14,8 @@
 		B5B5064A2FF16A0E000F78B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5B506462FF16A0E000F78B1 /* Assets.xcassets */; };
 		B5B506542FF16A1C000F78B1 /* GhosttyLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B5064C2FF16A1C000F78B1 /* GhosttyLauncher.swift */; };
 		B5B506552FF16A1C000F78B1 /* ITerm2Launcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B5064D2FF16A1C000F78B1 /* ITerm2Launcher.swift */; };
-		B5B506562FF16A1C000F78B1 /* LauncherFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B5064E2FF16A1C000F78B1 /* LauncherFactory.swift */; };
 		B5B506572FF16A1C000F78B1 /* TerminalAppLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B5064F2FF16A1C000F78B1 /* TerminalAppLauncher.swift */; };
-		B5B506582FF16A1C000F78B1 /* TerminalLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B506502FF16A1C000F78B1 /* TerminalLauncher.swift */; };
+
 		B5B506592FF16A1C000F78B1 /* FinderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B506522FF16A1C000F78B1 /* FinderService.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,9 +30,8 @@
 		B5B506482FF16A0E000F78B1 /* opencur.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = opencur.entitlements; sourceTree = "<group>"; };
 		B5B5064C2FF16A1C000F78B1 /* GhosttyLauncher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GhosttyLauncher.swift; sourceTree = "<group>"; };
 		B5B5064D2FF16A1C000F78B1 /* ITerm2Launcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITerm2Launcher.swift; sourceTree = "<group>"; };
-		B5B5064E2FF16A1C000F78B1 /* LauncherFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LauncherFactory.swift; sourceTree = "<group>"; };
 		B5B5064F2FF16A1C000F78B1 /* TerminalAppLauncher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TerminalAppLauncher.swift; sourceTree = "<group>"; };
-		B5B506502FF16A1C000F78B1 /* TerminalLauncher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TerminalLauncher.swift; sourceTree = "<group>"; };
+
 		B5B506522FF16A1C000F78B1 /* FinderService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinderService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,9 +98,7 @@
 			children = (
 				B5B5064C2FF16A1C000F78B1 /* GhosttyLauncher.swift */,
 				B5B5064D2FF16A1C000F78B1 /* ITerm2Launcher.swift */,
-				B5B5064E2FF16A1C000F78B1 /* LauncherFactory.swift */,
 				B5B5064F2FF16A1C000F78B1 /* TerminalAppLauncher.swift */,
-				B5B506502FF16A1C000F78B1 /* TerminalLauncher.swift */,
 			);
 			path = TerminalLauncher;
 			sourceTree = "<group>";
@@ -185,16 +181,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5B506552FF16A1C000F78B1 /* ITerm2Launcher.swift in Sources */,
-				B5B506582FF16A1C000F78B1 /* TerminalLauncher.swift in Sources */,
 				B5B506542FF16A1C000F78B1 /* GhosttyLauncher.swift in Sources */,
+				B5B506552FF16A1C000F78B1 /* ITerm2Launcher.swift in Sources */,
 				B5B506432FF16A05000F78B1 /* ConfigurationManager.swift in Sources */,
 				B5B506572FF16A1C000F78B1 /* TerminalAppLauncher.swift in Sources */,
 				B5B506442FF16A05000F78B1 /* Errors.swift in Sources */,
 				B5B5063E2FF169F9000F78B1 /* App.swift in Sources */,
 				B5B506592FF16A1C000F78B1 /* FinderService.swift in Sources */,
 				B5B506452FF16A05000F78B1 /* Logger.swift in Sources */,
-				B5B506562FF16A1C000F78B1 /* LauncherFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,7 +317,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Resources/opencur.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -351,7 +344,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Resources/opencur.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;

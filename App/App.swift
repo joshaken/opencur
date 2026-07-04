@@ -5,17 +5,15 @@ import OSLog
 @MainActor
 enum App {
     static func main() async {
-        let logger = Logger.general
+        let logger = Logger.opencur
         logger.info("opencur started")
 
         do {
             let directory = try FinderService().targetDirectory()
             logger.info("Target directory: \(directory.path)")
 
-            let config = ConfigurationManager()
-            let launcher = LauncherFactory.launcher(for: config.preferredTerminal)
-            try await launcher.open(directory: directory)
-            logger.info("Successfully opened in \(config.preferredTerminal.displayName)")
+            try await preferredTerminal.open(directory: directory)
+            logger.info("Successfully opened in \(preferredTerminal.displayName)")
         } catch FinderError.appleEventsPermissionDenied {
             let msg = "Permission denied. Go to System Settings → Privacy & Security → Automation → OpenCur → Finder"
             logger.error("\(msg, privacy: .public)")

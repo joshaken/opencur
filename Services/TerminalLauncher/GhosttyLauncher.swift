@@ -1,9 +1,6 @@
 import Cocoa
-@preconcurrency import OSLog
 
-struct GhosttyLauncher: TerminalLauncher {
-    private let logger = Logger.terminal
-
+struct GhosttyLauncher {
     func open(directory: URL) async throws {
         guard NSWorkspace.shared.urlForApplication(
             withBundleIdentifier: TerminalKind.ghostty.bundleIdentifier
@@ -24,7 +21,5 @@ struct GhosttyLauncher: TerminalLauncher {
         """
 
         try runOScript(script)
-
-        logger.info("Opened \(directory.path, privacy: .public) in Ghostty")
     }
 }

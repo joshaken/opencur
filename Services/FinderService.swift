@@ -1,6 +1,7 @@
 import Cocoa
 import OSLog
 
+@discardableResult
 func runOScript(_ script: String) throws -> String {
     let tmp = FileManager.default.temporaryDirectory
         .appendingPathComponent("opencur-\(UUID().uuidString).applescript")
@@ -32,16 +33,8 @@ func runOScript(_ script: String) throws -> String {
 }
 
 struct FinderService {
-    private let logger = Logger.finder
-
-    func isFinderRunning() -> Bool {
-        NSWorkspace.shared.runningApplications.contains {
-            $0.bundleIdentifier == "com.apple.finder"
-        }
-    }
-
     func targetDirectory() throws -> URL {
-        guard isFinderRunning() else {
+        guard NSWorkspace.shared.runningApplications.contains(where: { $0.bundleIdentifier == "com.apple.finder" }) else {
             throw FinderError.finderNotRunning
         }
 
