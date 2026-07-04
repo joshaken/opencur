@@ -1,0 +1,60 @@
+name: Release macOS App
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode.app
+
+      - name: Show Xcode Version
+        run: xcodebuild -version
+
+      - name: Build Release
+        run: |
+          xcodebuild \
+            -project opencur.xcodeproj \
+            -scheme opencur \
+            -configuration Release \
+            -derivedDataPath build \
+            clean build
+
+      - name: Install create-dmg
+        run: brew install create-dmg
+
+      - name: Create DMG
+        run: |
+          APP_PATH="build/Build/Products/Release/opencur.app"
+
+          create-dmg \
+            --volname "OpenCur" \
+            --window-size 600 400 \
+            --icon-size 120 \
+            --app-drop-link 450 185 \
+            opencur.dmg \
+            "$APP_PATH"
+
+      - name: Zip App
+        run: |
+          ditto -c -k --keepParent \
+            build/Build/Products/Release/opencur.app \
+            OpenCur.zip
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            opencur.dmg
+            opencur.zip
