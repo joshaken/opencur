@@ -23,19 +23,7 @@ struct GhosttyLauncher: TerminalLauncher {
         end tell
         """
 
-        var error: NSDictionary?
-
-        guard let appleScript = NSAppleScript(source: script) else {
-            throw TerminalError.launchFailed("Failed to create AppleScript")
-        }
-        appleScript.executeAndReturnError(&error)
-
-        if let error {
-            let message = (error[NSAppleScript.errorMessage] as? String)
-                ?? error.description
-
-            throw TerminalError.launchFailed(message)
-        }
+        try runOScript(script)
 
         logger.info("Opened \(directory.path, privacy: .public) in Ghostty")
     }

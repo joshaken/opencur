@@ -5,26 +5,14 @@ struct ITerm2Launcher: TerminalLauncher {
     private let logger = Logger.terminal
 
     func open(directory: URL) async throws {
-        let bundleID = TerminalKind.iTerm2.bundleIdentifier
-        guard let appURL = NSWorkspace.shared.urlForApplication(withBundleIdentifier: bundleID) else {
+        guard NSWorkspace.shared.urlForApplication(
+            withBundleIdentifier: TerminalKind.iTerm2.bundleIdentifier
+        ) != nil else {
             throw TerminalError.notInstalled(TerminalKind.iTerm2.displayName)
         }
 
         let script = iTerm2Script(for: directory.path)
-        var errorInfo: NSDictionary?
-        let appleScript = NSAppleScript(source: script)
-        appleScript?.executeAndReturnError(&errorInfo)
-
-        if let errorInfo {
-            logger.warning("iTerm2 AppleScript failed, falling back to NSWorkspace: \(errorInfo)")
-            let configuration = NSWorkspace.OpenConfiguration()
-            configuration.activates = true
-            do {
-                try await NSWorkspace.shared.open([directory], withApplicationAt: appURL, configuration: configuration)
-            } catch {
-                throw TerminalError.launchFailed(error.localizedDescription)
-            }
-        }
+//        try runOScript(script)
 
         logger.info("Opened \(directory.path) in iTerm2")
     }

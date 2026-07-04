@@ -1,29 +1,68 @@
 import Cocoa
 import OSLog
 
+func runOScript(_ script: String) throws -> String {
+    let tmp = FileManager.default.temporaryDirectory
+        .appendingPathComponent("opencur-\(UUID().uuidString).applescript")
+    try script.write(to: tmp, atomically: true, encoding: .utf8)
+    defer { try? FileManager.default.removeItem(at: tmp) }
+
+    let task = Process()
+    task.launchPath = "/usr/bin/osascript"
+    task.arguments = [tmp.path]
+
+    let outputPipe = Pipe()
+    let errorPipe = Pipe()
+    task.standardOutput = outputPipe
+    task.standardError = errorPipe
+
+    try task.run()
+    task.waitUntilExit()
+
+    guard task.terminationStatus == 0 else {
+        let errorData = errorPipe.fileHandleForReading.readDataToEndOfFile()
+        let msg = String(data: errorData, encoding: .utf8) ?? "Unknown osascript error"
+        throw NSError(domain: "opencur.osascript", code: Int(task.terminationStatus), userInfo: [
+            NSLocalizedDescriptionKey: msg.trimmingCharacters(in: .whitespacesAndNewlines)
+        ])
+    }
+
+    let outputData = outputPipe.fileHandleForReading.readDataToEndOfFile()
+    return String(data: outputData, encoding: .utf8) ?? ""
+}
+
 struct FinderService {
     private let logger = Logger.finder
 
-    func targetDirectory() throws -> URL {
-        let script = NSAppleScript(source: finderScript)
-        var errorInfo: NSDictionary?
-        let result = script?.executeAndReturnError(&errorInfo)
+    func isFinderRunning() -> Bool {
+        NSWorkspace.shared.runningApplications.contains {
+            $0.bundleIdentifier == "com.apple.finder"
+        }
+    }
 
-        if errorInfo != nil {
+    func targetDirectory() throws -> URL {
+        guard isFinderRunning() else {
             throw FinderError.finderNotRunning
         }
 
-        guard let descriptor = result, descriptor.descriptorType != typeAEList else {
-            throw FinderError.noFinderWindows
+        let output: String
+        do {
+            output = try runOScript(finderScript)
+        } catch {
+            let nsError = error as NSError
+            let msg = nsError.localizedDescription
+            if msg.contains("-1743") {
+                throw FinderError.appleEventsPermissionDenied
+            }
+            throw FinderError.appleScriptError(code: nsError.code, message: msg)
         }
 
-        guard let path = descriptor.stringValue, !path.isEmpty else {
+        let path = output.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !path.isEmpty else {
             throw FinderError.noSelection
         }
 
-        let url = URL(fileURLWithPath: path)
-        logger.info("Resolved directory: \(url.path)")
-        return url
+        return URL(fileURLWithPath: path)
     }
 }
 

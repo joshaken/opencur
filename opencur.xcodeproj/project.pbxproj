@@ -12,7 +12,6 @@
 		B5B506442FF16A05000F78B1 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B506402FF16A05000F78B1 /* Errors.swift */; };
 		B5B506452FF16A05000F78B1 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B506412FF16A05000F78B1 /* Logger.swift */; };
 		B5B5064A2FF16A0E000F78B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5B506462FF16A0E000F78B1 /* Assets.xcassets */; };
-		B5B5064B2FF16A0E000F78B1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5B506472FF16A0E000F78B1 /* Info.plist */; };
 		B5B506542FF16A1C000F78B1 /* GhosttyLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B5064C2FF16A1C000F78B1 /* GhosttyLauncher.swift */; };
 		B5B506552FF16A1C000F78B1 /* ITerm2Launcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B5064D2FF16A1C000F78B1 /* ITerm2Launcher.swift */; };
 		B5B506562FF16A1C000F78B1 /* LauncherFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B5064E2FF16A1C000F78B1 /* LauncherFactory.swift */; };
@@ -175,7 +174,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5B5064B2FF16A0E000F78B1 /* Info.plist in Resources */,
 				B5B5064A2FF16A0E000F78B1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -334,7 +332,8 @@
 				DEVELOPMENT_TEAM = 4T8L4FSXRB;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Resources/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -361,7 +360,8 @@
 				DEVELOPMENT_TEAM = 4T8L4FSXRB;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Resources/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

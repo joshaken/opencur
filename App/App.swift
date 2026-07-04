@@ -14,15 +14,15 @@ enum App {
 
             let config = ConfigurationManager()
             let launcher = LauncherFactory.launcher(for: config.preferredTerminal)
-
             try await launcher.open(directory: directory)
             logger.info("Successfully opened in \(config.preferredTerminal.displayName)")
+        } catch FinderError.appleEventsPermissionDenied {
+            let msg = "Permission denied. Go to System Settings → Privacy & Security → Automation → OpenCur → Finder"
+            logger.error("\(msg, privacy: .public)")
         } catch let error as FinderError {
-            logger.error("Finder error: \(error.description)")
-        } catch let error as TerminalError {
-            logger.error("Terminal error: \(error.description)")
+            logger.error("\(error.description, privacy: .public)")
         } catch {
-            logger.error("Unexpected error: \(error.localizedDescription)")
+            logger.error("\(error.localizedDescription, privacy: .public)")
         }
     }
 }
