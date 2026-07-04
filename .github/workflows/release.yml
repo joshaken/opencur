@@ -1,6 +1,7 @@
-name: Release macOS App
+name: Release
 
 on:
+  workflow_dispatch:
   push:
     tags:
       - "v*"
@@ -13,48 +14,44 @@ jobs:
     runs-on: macos-14
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Select Xcode
-        run: sudo xcode-select -s /Applications/Xcode.app
-
-      - name: Show Xcode Version
+      - name: Show Xcode
         run: xcodebuild -version
 
-      - name: Build Release
+      - name: Build
         run: |
+          set -euxo pipefail
+
           xcodebuild \
             -project opencur.xcodeproj \
             -scheme opencur \
             -configuration Release \
+            -destination 'platform=macOS' \
             -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_STYLE=Manual \
+            CODE_SIGN_IDENTITY="" \
+            DEVELOPMENT_TEAM="" \
             clean build
 
-      - name: Install create-dmg
-        run: brew install create-dmg
-
-      - name: Create DMG
+      - name: Verify App
         run: |
-          APP_PATH="build/Build/Products/Release/opencur.app"
-
-          create-dmg \
-            --volname "OpenCur" \
-            --window-size 600 400 \
-            --icon-size 120 \
-            --app-drop-link 450 185 \
-            opencur.dmg \
-            "$APP_PATH"
+          find build -name "*.app"
 
       - name: Zip App
         run: |
-          ditto -c -k --keepParent \
-            build/Build/Products/Release/opencur.app \
-            OpenCur.zip
+          APP=$(find build -name "*.app" | head -n 1)
 
-      - name: Create Release
+          if [ -z "$APP" ]; then
+            echo "No app found"
+            exit 1
+          fi
+
+          ditto -c -k --keepParent "$APP" opencur.zip
+
+      - name: Upload Release
         uses: softprops/action-gh-release@v2
         with:
-          files: |
-            opencur.dmg
-            opencur.zip
+          files: opencur.zip
