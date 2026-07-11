@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
 
 permissions:
   contents: write
@@ -13,9 +13,10 @@ jobs:
     runs-on: macos-14
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Build
+      - name: Build App
         run: |
           xcodebuild \
             -project opencur.xcodeproj \
@@ -24,16 +25,33 @@ jobs:
             -derivedDataPath build \
             clean build
 
-      - name: Zip App
+      - name: Install create-dmg
         run: |
-          ditto -c -k --keepParent \
-            build/Build/Products/Release/opencur.app \
-            opencur.zip
+          brew update
+          brew install create-dmg
 
-      - name: Create Release
+      - name: Create DMG
+        run: |
+          APP_DIR="build/Build/Products/Release"
+
+          create-dmg \
+            --volname "opencur" \
+            --volicon "$APP_DIR/opencur.app/Contents/Resources/AppIcon.icns" \
+            --window-pos 200 120 \
+            --window-size 600 400 \
+            --icon-size 120 \
+            --icon "opencur.app" 160 190 \
+            --hide-extension "opencur.app" \
+            --app-drop-link 440 190 \
+            --format UDZO \
+            --no-internet-enable \
+            "opencur.dmg" \
+            "$APP_DIR"
+
+      - name: Create GitHub Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release create "${GITHUB_REF_NAME}" \
-            opencur.zip \
+            opencur.dmg \
             --generate-notes
