@@ -15,15 +15,19 @@ Supports:
 
 ## Trust
 
-Because opencur is currently distributed without Apple notarization, macOS may prevent it from opening.
+`opencur` is currently **not code signed or notarized** by Apple. On recent versions of macOS, Gatekeeper may prevent it from opening. In some cases, you may see a message such as:
 
-If the app is quarantined, remove the quarantine attribute:
+> **“opencur” is damaged and can't be opened. You should move it to the Trash.**
+
+This is expected for an unsigned application and does **not** necessarily mean the app is actually damaged.
+
+If this happens, remove the quarantine attribute:
 
 ```bash
 xattr -dr com.apple.quarantine /Applications/opencur.app
 ```
 
-> Only do this if you downloaded opencur from the official GitHub Releases page.
+> Alternatively, you can build the project yourself from source using Xcode if you prefer not to remove the quarantine attribute.
 
 ## Configuration
 
